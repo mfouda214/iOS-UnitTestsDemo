@@ -79,8 +79,12 @@ class LinksViewController: UITableViewController, SFSafariViewControllerDelegate
     }
     
     @objc func prepareURL(_ urlString: String) -> URL? {
-        let urlStringWithPrefix = addURLPrefix(urlString)
-        return URL(string: urlStringWithPrefix)
+        if hasValidURLPrefix(urlString) {
+            return URL(string: urlString)
+        } else {
+            let urlStringWithPrefix = addURLPrefix(urlString)
+            return URL(string: urlStringWithPrefix)
+        }
     }
     
     @objc func addURLPrefix(_ urlString: String) -> String {
